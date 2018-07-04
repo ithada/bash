@@ -1,2 +1,5 @@
+# Recordar
+Dar permisos de ejecucion con sudo chmod +x bash...
+
 # bash
-Versionado de bash para tener un unico archivo.
+Versionado de distintos bash, para tenerlos en un único lado.
