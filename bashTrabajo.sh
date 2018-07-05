@@ -8,7 +8,11 @@ usuario=""
 ############# FUNCIONES ################
 reemplazar_bind_vincha() {
 echo "Se remplaza en el file tarjeta $1 tipo $2";
-## 429 434
+	sed -i.back -E "425,450 s/(<command>amixer \-).+(3%.+)/\1c $1 sset $2 \2/" /home/$usuario/.config/openbox/lubuntu-rc.xml
+}
+rebind_teclas() {
+	openbox --reconfigure
+	echo "Botones de volumen configurados con éxito."
 }
 detectar_usuario() { 
 	echo "Obteniendo el usuario sobre el que se trabajará"
@@ -31,10 +35,11 @@ detectar_vincha() {
 				*"Logitech"*) reemplazar_bind_vincha $tarjeta_sonido "Headphone" ;;
 				*) echo "No matcheo con una vincha conocida";;
 			esac
+			rebind_teclas
 		else
 			echo "No se detecto vincha.Saliendo..."
-			exit 0
 	fi
+	exit 0
 }
 panel_pantalla() {
 	detectar_usuario
