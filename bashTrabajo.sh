@@ -71,14 +71,22 @@ vincha_manual() {
 	echo "<command>amixer -c 1 sset Headphone 3%+ unmute</command>"
 	exit 0
 }
+reiniciar_pulseaudio() {
+	echo "RECORDAR:"
+	echo "La ventana donde se configura el volumen, debe estar cerrada."
+	pulseaudio -k
+	pulseaudio --start
+	echo "Se reinició el servicio de audio."
+}
 ########## FIN FUNCIONES #########
 menu() {
 	clear
 	echo "1 - Configurar botones de volumen de la vincha"
 	echo "2 - Reconfigurar escritorio"
-	echo "3 - Versión"
-	echo "4 - Configurar MANUAL botones de la vincha"
-	echo "5 - Salir"
+        echo "3 - Twinkle dice: dispositivo ocupado"
+	echo "4 - Versión"
+	echo "5 - Configurar MANUAL botones de la vincha"
+	echo "6 - Salir"
 }
 
 seleccionar_menu() {
@@ -87,10 +95,10 @@ seleccionar_menu() {
 	case $opcion in
 	1) config_vincha ;;
 	2) panel_pantalla ;;
-	3) version ;;
-	4) vincha_manual ;;
-	5) exit 0 ;;
-	gabi) echo "Version inicial 1-7-18 - Desarrollada por Gabriel Lourenço y Agustín Meinardo" ;;
+	3) reiniciar_pulseaudio ;;
+	4) echo "Version inicial 1-7-18 - Desarrollada por Gabriel Lourenço y Agustín Meinardo" ;;
+        5) vincha_manual ;;
+	6) exit 0 ;;
 	*) echo "Error..." && exit 0 ;;
 	esac
 }
