@@ -43,6 +43,7 @@ detectar_vincha() {
 }
 panel_pantalla() {
 	detectar_usuario
+	su administrador
 	fecha=`date +%Y%m%d`
 	echo "Backupeando archivos..."
 	for archivos in /home/$usuario/.config/lxpanel/*
